@@ -1,0 +1,42 @@
+{
+  "name": "dsh-idea-dice",
+  "version": "0.1.0",
+  "description": "DeepSeek Harness 灵感骰子：随机创作挑战、带权选择转盘与可复现的多面骰。",
+  "type": "module",
+  "license": "MIT",
+  "author": "qinghuidaqzp",
+  "repository": { "type": "git", "url": "git+https://github.com/qinghuidaqzp/dsh-idea-dice.git" },
+  "homepage": "https://github.com/qinghuidaqzp/dsh-idea-dice#readme",
+  "bugs": { "url": "https://github.com/qinghuidaqzp/dsh-idea-dice/issues" },
+  "engines": { "node": ">=22" },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./locale/*.json": "./locale/*.json",
+    "./package.json": "./package.json"
+  },
+  "files": ["dist", "src", "locale", "cordis.patch.yml", "README.md", "CHANGELOG.md", "LICENSE"],
+  "keywords": ["dsh-plugin", "deepseek-harness", "creativity", "dice", "random"],
+  "dsh": { "bundle": { "patch": "./cordis.patch.yml" } },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "check": "npm run typecheck && npm test && npm run build",
+    "prepack": "npm run build"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.1.0",
+    "@deepseek-ai/dsh-tools": "0.2.2-rc.2"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "~4.1.0",
+    "@deepseek-ai/dsh-tools": "0.2.2-rc.2",
+    "@deepseek-ai/dsh-system-prompt": "0.2.2-rc.2",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  }
+}
